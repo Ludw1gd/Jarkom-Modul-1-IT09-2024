@@ -46,3 +46,5 @@ Selanjutnya, dilakukan filtering dengan `http.request.method == "POST"` dan anal
 ![image](https://github.com/user-attachments/assets/0535170f-81c1-4ffa-a0de-84e7e46d37f9)
 
 Lalu, analisis 5 paket `POST` terakhir yang ada di list dan Follow HTTP Stream sehingga ditemukan pertanyaan dari si penyerang dalam bentuk kumpulan numerik. Kemudian didecrypt dengan menggunakan ASCII decoder sehingga didapatkan jawaban. Dari itu, didapatkan flagnya.
+
+## Soal (Packets Barrage)
