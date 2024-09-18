@@ -47,10 +47,48 @@ Selanjutnya, dilakukan filtering dengan `http.request.method == "POST"` dan anal
 
 Lalu, analisis 5 paket `POST` terakhir yang ada di list dan Follow HTTP Stream sehingga ditemukan pertanyaan dari si penyerang dalam bentuk kumpulan numerik. Kemudian didecrypt dengan menggunakan ASCII decoder sehingga didapatkan jawaban. Dari itu, didapatkan flagnya.
 
-## Soal (Packets Barrage)
+## Soal 5 (Packets Barrage)
 
 ![image](https://github.com/user-attachments/assets/9b6817b4-ecef-4ed9-b68a-03988bf157b0)
 
 Dilakukan filtering "http" dan analisa bahwa terdapat banyak paket dengan `POST` tetapi tidak dengan `GET`, dapat dilihat **ip** attacker nya dari kolom `source`. Filtering `frame contains "Not Found"` untuk melihat dan mendapatkan total attempt bruteforce. Filtering `frame contains "GET"` untuk melihat paket yang statusnya bruteforce berhasil. Kemudian, Follow HTTP Stream paket tersebut dan didapatkan nama file yang didownload oleh attacker setelah berhasil login. Didapatkan juga isi dari file yang disisipkan oleh attacker.
 
+## Soal 6 (Corporate Breach)
 
+![image](https://github.com/user-attachments/assets/55a30801-8f2b-4bb6-a1d7-7f984f369074)
+
+Nama attacker dapat ditemukan dari packet pertama yaitu Nakhamov
+
+![image](https://github.com/user-attachments/assets/cf406406-c4f8-4a2e-b659-3aff99e1921e)
+
+Selanjutnya untuk menemukan email yang digunakan untuk masuk, kita bisa filter http dan packet yang tidak mengandung kata invalid email. Dari langkah langkah tersebut kita bisa menemukan packet yang menandakan OK atau benar, sehingga ditemukan email dan pass nya yaitu jarkomsupport@gmail.com  dan j4rk0mg4c0rbg 
+
+![image](https://github.com/user-attachments/assets/1eeaf39e-81e3-467a-9cb7-f880b0bd4ca7)
+
+Flag berhasil didapatkan
+
+## Soal 7 (Illegal Breakthrough)
+
+![image](https://github.com/user-attachments/assets/2d93b78b-a4fa-4a46-bcee-5d0f8d41ed70)
+
+Pertama, kita bisa menemukan IP korban dengan memberikan filter http dan melihat destinasi dari sang attacker yaitu 172.21.88.207
+
+![image](https://github.com/user-attachments/assets/0a05813d-1c70-41ac-a734-9500712362ef)
+
+Kedua, Portnya dapat kita temukan di destination port yaitu 1917
+
+![image](https://github.com/user-attachments/assets/1d7f59d7-ef64-43dc-b22c-895481ac2b9a)
+
+Ketiga, endpointnya untuk login dapat kita lihat di full URL nya yaitu /ww1.php
+
+![image](https://github.com/user-attachments/assets/e1b42d01-d696-477a-ab52-79560047f900)
+
+Selanjutnya, user agent nya dapat kita temukan disini dan dapat kita singkat menjadi uufh-v2.1.0-dev
+
+![image](https://github.com/user-attachments/assets/14a20126-23ad-47de-9afb-62dc1a0e5464)
+
+Untuk mencari username dan password yang digunakan, kita dapat melihat dimana packet dari request loginnya berupa OK atau berhasil sehingga didapatkan username dan passwornya yaitu Redbaron dan fly1ng4c3 
+
+![image](https://github.com/user-attachments/assets/eeb94cd2-52f0-4213-a63e-c3310640a9f8)
+
+Selesai, Flag didapatkan
