@@ -51,4 +51,6 @@ Lalu, analisis 5 paket `POST` terakhir yang ada di list dan Follow HTTP Stream s
 
 ![image](https://github.com/user-attachments/assets/9b6817b4-ecef-4ed9-b68a-03988bf157b0)
 
+Dilakukan filtering "http" dan analisa bahwa terdapat banyak paket dengan `POST` tetapi tidak dengan `GET`, dapat dilihat **ip** attacker nya dari kolom `source`. Filtering `frame contains "Not Found"` untuk melihat dan mendapatkan total attempt bruteforce. Filtering `frame contains "GET"` untuk melihat paket yang statusnya bruteforce berhasil. Kemudian, Follow HTTP Stream paket tersebut dan didapatkan nama file yang didownload oleh attacker setelah berhasil login. Didapatkan juga isi dari file yang disisipkan oleh attacker.
+
 
