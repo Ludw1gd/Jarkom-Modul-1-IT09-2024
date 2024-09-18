@@ -33,9 +33,13 @@ Dilakukan filtering `frame contains "login"` dan Follow TCP Stream sehingga dite
 
 ![image](https://github.com/user-attachments/assets/b4a5c59d-d392-470d-8b03-daf568c6ff1e)
 
-Karena ada banyak, lakukan sorting dengan `Time` sehingga dapat melihat perbedaan informasi time dengan kelima paket tersebut. Ada 57 paket dan dikurangi dengan 5 paket berbeda tersebut sehingga didapatkan **52** attempt dir listing. Kemudian dilakukan filtering dengan "http.request" dan analisis sehingga didapatkan endpoint `/index.php` karena dari banyaknya `GET`, yang berhasil `POST` hanya `/index.php`.
+Karena ada banyak, lakukan sorting dengan `Time` sehingga dapat melihat perbedaan informasi time dengan kelima paket tersebut. Ada 57 paket dan dikurangi dengan 5 paket berbeda tersebut sehingga didapatkan **52** attempt dir listing. 
 
 ![image](https://github.com/user-attachments/assets/e78a3d3b-ce34-4c8d-b9cf-2f862396ef07)
+
+Kemudian dilakukan filtering dengan "http.request" dan analisis sehingga didapatkan endpoint `/index.php` karena dari banyaknya `GET`, yang berhasil `POST` hanya `/index.php`.
+
+![image](https://github.com/user-attachments/assets/953dcf0e-bcae-485b-8385-cc6c66fd8092)
 
 Selanjutnya, dilakukan filtering dengan `http.request.method == "POST"` dan analisis ditemukan 1 dengan length yang beda sendiri. Lalu hitung attempt nya sampai awal dia mencoba menemukan email dan password yang benar sehingga didapatkan **153** attempt.
 
