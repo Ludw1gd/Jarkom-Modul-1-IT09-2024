@@ -92,3 +92,92 @@ Untuk mencari username dan password yang digunakan, kita dapat melihat dimana pa
 ![image](https://github.com/user-attachments/assets/eeb94cd2-52f0-4213-a63e-c3310640a9f8)
 
 Selesai, Flag didapatkan
+
+## Soal 8 (FTP Login)
+
+![image](https://github.com/user-attachments/assets/a1b60047-63eb-4209-9a87-332505b4cc43)
+
+Pertama, Username untuk login dapat ditemukan pada packet yang menyatakan berhasil login seperti gambar di atas dan dengan mem filter packet menjadi TCP saja.
+
+![image](https://github.com/user-attachments/assets/e53fd77c-d10c-462e-864d-aabf3172f651)
+
+Selanjutnya, password dapat kita lihat di bawah packet yang menyatakan username berhasil.
+
+![image](https://github.com/user-attachments/assets/6c9fe0e4-608f-4913-8f1f-eda4a07dc5a6)
+
+Selesai, flag didapatkan
+
+## Soal 9 (Suprise)
+
+![image](https://github.com/user-attachments/assets/3620cd80-2156-467d-9ac9-f24e37eb90e3)
+
+Dengan file yang sama dengan nomer sebelumnya, kita bisa menemukan nama service yang digunakan di Packet paling awal.
+
+![image](https://github.com/user-attachments/assets/730f395f-b84c-460e-a4d9-f4a04f31e0c6)
+
+File yang dikirim dapat kita lihat di packet yang menunjukkan pengiriman file.
+
+![image](https://github.com/user-attachments/assets/78389709-059c-4fc0-a9d9-bedb104224ea)
+
+![image](https://github.com/user-attachments/assets/6e498d2d-f490-490f-9041-33975f1b262b)
+
+Kita bisa menemukan string yang tersembunyi dengan membuka file cpp yang dikirim oleh attacker dan bisa kita compile seperti di atas
+
+![image](https://github.com/user-attachments/assets/16a74004-e1a1-4bcb-b49b-5c0177f34fe5)
+
+Selesai, flag ditemukan
+
+## Soal 10 (22 Nightmare)
+
+![image](https://github.com/user-attachments/assets/b949ad42-5c36-4580-af62-069b863e95d3)
+
+Pada soal pertama, kita diminta untuk menemukan file yang dikirim penyerang. Kita dapat menemukannya dengan memberi filter ftp terlebih dahulu, lalu mencari packet yang memiliki kata STOR
+
+![image](https://github.com/user-attachments/assets/d28b14e2-c623-44b0-b6e2-5d75a340bc3a)
+
+Lalu, untuk soal kedua, kita perlu men download file yang dikirim tersebut dengan cara memberi tambahan filter OR ftp-data karena disinilah packet-packet file berada. 
+
+![image](https://github.com/user-attachments/assets/a96409e6-0b45-47af-9b66-db88ef35a33b)
+
+Setelah itu, kita bisa follow tcp packet tersebut lalu mengubahnya menjadi raw terlebih dahulu, lalu disimpan dengan ekstensi jpg agar bisa dibuka
+
+![image](https://github.com/user-attachments/assets/abf0c7e0-c4a5-43fa-a3d2-2cdcd9c0a4d3)
+
+Disini kita menemukan sebuah gambar dengan tulisan NUN, yang mana merupakan jawaban dari pertanyaan ke 2 ini
+
+![image](https://github.com/user-attachments/assets/35efeae9-d843-4dcf-bbf0-88a16825572e)
+
+Selanjutnya, untuk soal ke 3, kita dapat menemukan nomor stream dari file kedua yaitu kono.py dengan klik kanan dan follow stream tcp file tersebut, yang mana dalam case ini adalah 141.
+
+![image](https://github.com/user-attachments/assets/a4e47be7-23e7-4868-9ad0-45b03eb1c275)
+
+Terakhir, untuk mencari nama asli pengirim, kita dapat copas python script dalam packet yang dikirim, dan melakukan sedikit modifikasi pada kodenya seperti berikut
+
+```
+def string_to_bin(s):
+    return ''.join(format(ord(char), '08b') for char in s)
+
+def bin_to_string(b):
+    chars = [chr(int(b[i:i+8], 2)) for i in range(0, len(b), 8)]
+    return ''.join(chars)
+
+def xor_with_key(input_str, key_str):
+    key_bin = string_to_bin(key_str)
+    key_bin_repeated = (key_bin * ((len(input_str) // len(key_bin)) + 1))[:len(input_str)]
+    xor_result = ''.join(str(int(a) ^ int(b)) for a, b in zip(input_str, key_bin_repeated))
+    return xor_result
+
+input = "001001100011010000100010001000100011101001101110001001110011100001101110000110100011101000111100001011110011111000100001011011100001111000100001001111010011110100100111"
+key = "NUN"
+value = String
+
+xor_result = xor_with_key(input_str, key_str)
+value = bin_to_string(xor_result)
+
+print(value)
+
+```
+Dengan sedikit bantuan Google, disini kita bisa merubah python code tersebut sehingga dapat melakukan operasi XOR dengan kunci dari gambar yang telah kita dapat tadi, sehingga kita perlu mengubah kata "NUN" tersebut menjadi sebuah binary, lalu melakukan operasi XOR pada input yang telah diberikan dan mengubahnya kembali menjadi ASCII text, dimana output dari operasi tersebut merupakan "hallo im *Torako Koshi*". Dari output tersebut, kita mendapatkan nama yang dimaksud beserta flag nya
+
+![image](https://github.com/user-attachments/assets/29753faf-14f0-4b90-9a02-58468306364c)
+
