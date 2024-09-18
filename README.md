@@ -161,21 +161,19 @@ def bin_to_string(b):
     chars = [chr(int(b[i:i+8], 2)) for i in range(0, len(b), 8)]
     return ''.join(chars)
 
-def xor_with_key(input_str, key_str):
-    key_bin = string_to_bin(key_str)
-    key_bin_repeated = (key_bin * ((len(input_str) // len(key_bin)) + 1))[:len(input_str)]
-    xor_result = ''.join(str(int(a) ^ int(b)) for a, b in zip(input_str, key_bin_repeated))
-    return xor_result
+def xor_with_key(input, key):
+    key_bin = string_to_bin(key)
+    key_bin_repeated = (key_bin * ((len(input) // len(key_bin)) + 1))[:len(input)]
+    value = ''.join(str(int(a) ^ int(b)) for a, b in zip(input, key_bin_repeated))
+    return value
 
 input = "001001100011010000100010001000100011101001101110001001110011100001101110000110100011101000111100001011110011111000100001011011100001111000100001001111010011110100100111"
 key = "NUN"
-value = String
 
-xor_result = xor_with_key(input_str, key_str)
-value = bin_to_string(xor_result)
+value = xor_with_key(input, key)
+ascii_value = bin_to_string(value)
 
-print(value)
-
+print(ascii_value)
 ```
 Dengan sedikit bantuan Google, disini kita bisa merubah python code tersebut sehingga dapat melakukan operasi XOR dengan kunci dari gambar yang telah kita dapat tadi, sehingga kita perlu mengubah kata "NUN" tersebut menjadi sebuah binary, lalu melakukan operasi XOR pada input yang telah diberikan dan mengubahnya kembali menjadi ASCII text, dimana output dari operasi tersebut merupakan "hallo im *Torako Koshi*". Dari output tersebut, kita mendapatkan nama yang dimaksud beserta flag nya
 
