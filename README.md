@@ -191,5 +191,10 @@ Didapatkan domain DNS dengan analisis paket-paket dengan protokol DNS yang ada. 
 
 Dilakukan filtering `frame contains "db"` dan pilih salah satu paket kemudian Follow TCP Stream. Analisis dan didapatkan DBMS yang digunakan yaitu PostgreSQL. Lalu analisis paket yang memiliki informasi port terbanyak yaitu 6969. Kembali ke Folloow TCP Stream yang pertama, didapatkan OS yaitu Debian, credentials username nya yaitu s1gm4, nama database yaitu sigmaskibidigyatrizzzz, jumlah username yaitu 4, email yang digunakan yaitu jojohermawan@gmail.com setelah dianalisis. Lalu didapatkan juga password dalam bentuk kode enkripsi MD5. Setelah didecrypt, masukkan passwordnya dan flag didapatkan.
 
+## Soal 13 (Gajah Terbang (Attacker Recon))
+
+![image](https://github.com/user-attachments/assets/532f7899-2c2e-4f22-9923-2e5edf0981bb)
+
+Follow TCP Stream masih sama seperti **Soal 12**, didapatkan akun yang dimiliki oleh penyerang dalam database tersebut setelah di bruteforce yaitu kuntoajiisrillll@gmail.com. Didapatkan password setelah didecrypt menggunakan MD5. Didapatkan tanggal akun penyerang diban setelah analisis isi Follow TCP Stream bagian `SELECT * FROM banned_users`. Didapatkan table apa saja yang dimodifikasi oleh penyerang dengan melihat pada bagian `UPDATE` dan `DELETE`. Kemudian, didapatkan barang apa saja yang dibeli oleh penyerang dengan bruteforce satu-satu. Lalu, didapatkan total transaksi setelah menjumlahkan kedua harga barang tersebut. Dari itu, didapatkan flagnya.
 
 
