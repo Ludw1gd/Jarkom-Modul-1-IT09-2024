@@ -179,3 +179,10 @@ Dengan sedikit bantuan Google, disini kita bisa merubah python code tersebut seh
 
 ![image](https://github.com/user-attachments/assets/29753faf-14f0-4b90-9a02-58468306364c)
 
+## Soal 11 (Rizzset)
+
+![image](https://github.com/user-attachments/assets/af45ecdf-1a56-4a43-851f-1377c7fca7b4)
+
+Didapatkan domain DNS dengan analisis paket-paket dengan protokol DNS yang ada. Kemudian, ip dari domain didapatkan dengan cara `ping` nama domain. Lalu untuk mendapatkan JARM fingerprint dari domain tersebut, pertama `git clone https://github.com/salesforce/jarm.git`. Kedua, gunakan command `python3 jarm.py www.its.ac.id` pada terminal dan didapatkan JARM Fingerprint. Dari itu, didapatkan flagnya.
+
+
