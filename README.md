@@ -185,4 +185,11 @@ Dengan sedikit bantuan Google, disini kita bisa merubah python code tersebut seh
 
 Didapatkan domain DNS dengan analisis paket-paket dengan protokol DNS yang ada. Kemudian, ip dari domain didapatkan dengan cara `ping` nama domain. Lalu untuk mendapatkan JARM fingerprint dari domain tersebut, pertama `git clone https://github.com/salesforce/jarm.git`. Kedua, gunakan command `python3 jarm.py www.its.ac.id` pada terminal dan didapatkan JARM Fingerprint. Dari itu, didapatkan flagnya.
 
+## Soal 12 (Gajah Terbang (Server Recon))
+
+![image](https://github.com/user-attachments/assets/240236eb-b714-4f50-9f90-08309db99938)
+
+Dilakukan filtering `frame contains "db"` dan pilih salah satu paket kemudian Follow TCP Stream. Analisis dan didapatkan DBMS yang digunakan yaitu PostgreSQL. Lalu analisis paket yang memiliki informasi port terbanyak yaitu 6969. Kembali ke Folloow TCP Stream yang pertama, didapatkan OS yaitu Debian, credentials username nya yaitu s1gm4, nama database yaitu sigmaskibidigyatrizzzz, jumlah username yaitu 4, email yang digunakan yaitu jojohermawan@gmail.com setelah dianalisis. Lalu didapatkan juga password dalam bentuk kode enkripsi MD5. Setelah didecrypt, masukkan passwordnya dan flag didapatkan.
+
+
 
